@@ -11,10 +11,13 @@ function _update()
 		update_menu()
 	elseif state == "credits" then
 		update_credits()
+	elseif state == "howtoplay" then
+		update_howtoplay()
 	end
 end
 
 function _draw()
 	if state == "menu" then draw_menu() end
 	if state == "credits" then draw_credits() end
+	if state == "howtoplay" then draw_howtoplay() end
 end
