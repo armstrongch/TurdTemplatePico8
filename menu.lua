@@ -19,6 +19,10 @@ function update_menu()
 	
 	if btnp(5) then
 		
+		if selected_menu_item_index == 3 then
+			state = "playgame"
+		end
+		
 		if selected_menu_item_index == 4 then
 			state = "howtoplay"
 		end
@@ -65,13 +69,13 @@ end
 
 function draw_credits()
 	rectfill(0,0,127,127,0)
-	credits = {
+	local credits = {
 		"design by", "person and person", "",
 		"code by", "person", "",
 		"music by", "person", "",
 		"special thanks", "person, person, person", "person, person"
 	}
-	y_pos = 8
+	local y_pos = 8
 	for m in all(credits) do
 		print(m, 16, y_pos, 7)
 		y_pos += 8
@@ -136,12 +140,12 @@ instruction_page_count = ceil(#instruction_lines / instruction_lines_per_page)
 function draw_howtoplay()
 	rectfill(0,0,127,127,0)
 	
-	y_pos = 8
+	local y_pos = 8
 	page_num_text = "⬅️ page " .. instruction_page .. " of " .. instruction_page_count .. " ➡️"
 	print(page_num_text, 4, y_pos, 7)
 	y_pos += 16
 	
-	instruction_line_start_index = (instruction_page-1)*10 + 1
+	local instruction_line_start_index = (instruction_page-1)*10 + 1
 	
 	for m=instruction_line_start_index, min(instruction_line_start_index+instruction_lines_per_page,#instruction_lines) do
 		print(instruction_lines[m], 4, y_pos, 7)
