@@ -61,4 +61,9 @@ function update_player(o)
 			o.target_y += 8
 		end
 	end
+	if (mget(o.target_x/8, o.target_y/8) == 1) then
+		o.target_x = o.x
+		o.target_y = o.y
+	end
+	
 end
