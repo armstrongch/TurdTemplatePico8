@@ -20,6 +20,7 @@ function update_menu()
 	if btnp(5) then
 		
 		if selected_menu_item_index == 3 then
+			init_game()
 			state = "playgame"
 		end
 		

@@ -1,16 +1,13 @@
 function update_playgame()
-	if #game_objects == 0 then
-		init_game()
-	else
-		for o in all(game_objects) do
-			update_game_object(o)
-		end
+	for o in all(game_objects) do
+		update_game_object(o)
 	end
 end
 
 function draw_playgame()
-	rectfill(0,0,127,127,0)
-	map(0, 0, 0, 0, 16, 16)
+	rectfill(player.x-65,player.y-65,player.x+65,player.y+65,0)
+	camera(player.x-64, player.y-64)
+	map()
 	for o in all(game_objects) do
 		draw_game_object(o)
 	end
@@ -29,7 +26,7 @@ function update_game_object(o)
 			o.x = o.target_x
 			o.x_speed = 0
 		else
-			o.x_speed = 1
+			o.x_speed = o.move_speed
 			if (o.target_x < o.x) then
 				o.x -= o.x_speed
 			else
@@ -41,7 +38,7 @@ function update_game_object(o)
 			o.y = o.target_y
 			o.y_speed = 0
 		else
-			o.y_speed = 1
+			o.y_speed = o.move_speed
 			if (o.target_y < o.y) then
 				o.y -= o.y_speed
 			else

@@ -14,7 +14,8 @@ function create_game_object(in_x, in_y, in_obj_type, in_sprite_index)
 		obj_type = in_obj_type,
 		sprite_index = in_sprite_index,
 		x_speed = 0,
-		y_speed = 0
+		y_speed = 0,
+		move_speed = 2,
 	}
 	
 	return game_object
