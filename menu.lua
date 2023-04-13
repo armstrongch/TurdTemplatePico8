@@ -61,7 +61,6 @@ function draw_menu()
 		y_pos += 16
 	end
 	print("❎", 4, selected_menu_item_index*16 - 8, 7)
-	
 end
 
 function update_credits()

@@ -49,21 +49,35 @@ function update_game_object(o)
 	end
 end
 
+collision_map_sprites = { 1, 3, 4}
+
 function update_player(o)
 	if ((o.target_x == o.x) and (o.target_y == o.y)) then
 		if btn(0) then
 			o.target_x -= 8
+			o.prev_move_dir = 180
 		elseif btn(1) then
 			o.target_x += 8
+			o.prev_move_dir = 0
 		elseif btn(2) then
 			o.target_y -= 8
+			o.prev_move_dir = 90
 		elseif btn(3) then
 			o.target_y += 8
+			o.prev_move_dir = 270
 		end
-	end
-	if (mget(o.target_x/8, o.target_y/8) == 1) then
-		o.target_x = o.x
-		o.target_y = o.y
+		
+		 
 	end
 	
+	local target_space = mget(o.target_x/8, o.target_y/8)
+	
+	for s in all(collision_map_sprites) do
+		if (target_space == s) then
+			o.target_x = o.x
+			o.target_y = o.y
+			show_conversation(target_space, 0)
+		end
+	end
+
 end

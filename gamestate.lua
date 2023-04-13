@@ -15,6 +15,8 @@ function _update()
 		update_howtoplay()
 	elseif state == "playgame" then
 		update_playgame()
+	elseif state == "dialogue" then
+		update_dialogue()
 	end
 end
 
@@ -23,4 +25,5 @@ function _draw()
 	if state == "credits" then draw_credits() end
 	if state == "howtoplay" then draw_howtoplay() end
 	if state == "playgame" then draw_playgame() end
+	if state == "dialogue" then draw_dialogue() end
 end
