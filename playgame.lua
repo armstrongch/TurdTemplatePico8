@@ -1,3 +1,6 @@
+--player cannot walk through these sprites on the map
+collision_map_sprites = { 1, 3, 4}
+
 function update_playgame()
 	for o in all(game_objects) do
 		update_game_object(o)
@@ -14,11 +17,16 @@ function draw_playgame()
 end
 
 function draw_game_object(o)
-	spr(o.sprite_index, o.x, o.y)
+	if (o.obj_type == "enemy") then
+		draw_enemy(o)
+	else
+		spr(o.sprite_index, o.x, o.y)
+	end
 end
 
 function update_game_object(o)
 	if o.obj_type == "player" then update_player(o) end
+	if o.obj_type == "enemy" then update_enemy(o) end
 	
 	if ((o.target_x != o.x) or (o.target_y != o.y)) then
 		
@@ -49,8 +57,6 @@ function update_game_object(o)
 	end
 end
 
-collision_map_sprites = { 1, 3, 4}
-
 function update_player(o)
 	if ((o.target_x == o.x) and (o.target_y == o.y)) then
 		if btn(0) then
@@ -66,18 +72,26 @@ function update_player(o)
 			o.target_y += 8
 			o.prev_move_dir = 270
 		end
-		
-		 
 	end
 	
-	local target_space = mget(o.target_x/8, o.target_y/8)
+	local target_space = { x = o.target_x/8, y = o.target_y/8 }
+	local target_space_collider = space_collider(target_space)
 	
+	
+	if target_space_collider != 0 then
+		o.target_x = o.x
+		o.target_y = o.y
+		show_conversation(target_space_collider, 0)
+	end
+end
+
+--Returns collider index if space contains a collider, otherwise returns 0
+function space_collider(space)
+	local collider_index = mget(space.x, space.y)
 	for s in all(collision_map_sprites) do
-		if (target_space == s) then
-			o.target_x = o.x
-			o.target_y = o.y
-			show_conversation(target_space, 0)
+		if (s == collider_index) then
+			return collider_index
 		end
 	end
-
+	return 0
 end
