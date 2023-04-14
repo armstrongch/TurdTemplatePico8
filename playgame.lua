@@ -72,6 +72,8 @@ function update_player(o)
 			o.target_y += 8
 			o.prev_move_dir = 270
 		end
+		
+		if o.target_x != o.x or o.target_y != o.y then sound("walk") end
 	end
 	
 	local target_space = { x = o.target_x/8, y = o.target_y/8 }
