@@ -8,8 +8,8 @@ function update_playgame()
 end
 
 function draw_playgame()
-	rectfill(player.x-65,player.y-65,player.x+65,player.y+65,0)
-	camera(player.x-64, player.y-64)
+	rectfill(player.x-70,player.y-70,player.x+70,player.y+70,0)
+	camera(player.x-60, player.y-60)
 	map()
 	for o in all(game_objects) do
 		draw_game_object(o)

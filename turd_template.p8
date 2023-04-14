@@ -1,6 +1,8 @@
 pico-8 cartridge // http://www.pico-8.com
 version 41
 __lua__
+--turd template
+--by chris 'turd boomerang' armstrong
 #include gamestate.lua
 #include menu.lua
 #include playgame.lua
