@@ -62,6 +62,7 @@ end
 function update_player(o)
 	
 	if btnp(4) then state = "inventory" end
+	if btnp(5) then use_item() end
 	
 	if #inventory_items < max_inv_items then
 		local current_space_sprite = mget(o.x/8, o.y/8)

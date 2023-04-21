@@ -12,6 +12,37 @@ item_pickup_sprites = {
 	{ 9, "shipping crate: \n this is a test of the \n multi-line item \n descriptions" }
 }
 
+function use_item()
+	if inventory_index <= #inventory_items then
+		local item_to_use = inventory_items[inventory_index]
+		if 1 != 1 then
+			--add conditions for special items here
+		else
+			--this item had no special effect, and hitting the item button drops the item
+			local space_to_drop = next_space_in_player_dir()
+			if mget(space_to_drop.x, space_to_drop.y) == 0 then
+				mset(space_to_drop.x, space_to_drop.y, del(inventory_items, item_to_use))
+			end
+		end
+	end
+end
+
+function next_space_in_player_dir()
+	local next_space = { x = player.target_x/8, y = player.target_y/8 }
+	
+	if player.prev_move_dir == 180 then
+		next_space.x -= 1
+	elseif player.prev_move_dir == 0 then
+		next_space.x += 1
+	elseif player.prev_move_dir == 90 then
+		next_space.y -= 1
+	else --270
+		next_space.y += 1
+	end
+	
+	return next_space
+end
+
 function get_inventory_desc(sprite)
 	for i in all(item_pickup_sprites) do
 		if i[1] == sprite then return i[2] end
