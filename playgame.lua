@@ -14,6 +14,8 @@ function draw_playgame()
 	for o in all(game_objects) do
 		draw_game_object(o)
 	end
+	
+	draw_ui()
 end
 
 function draw_game_object(o)
@@ -61,7 +63,7 @@ function update_player(o)
 	
 	if btnp(4) then state = "inventory" end
 	
-	if #inventory_items < max_items then
+	if #inventory_items < max_inv_items then
 		local current_space_sprite = mget(o.x/8, o.y/8)
 		for i in all(item_pickup_sprites) do
 			if i[1] == current_space_sprite then
