@@ -20,7 +20,6 @@ function update_menu()
 	if btnp(5) then
 		
 		if selected_menu_item_index == 3 then
-			init_game()
 			state = "playgame"
 		end
 		
@@ -29,21 +28,11 @@ function update_menu()
 		end
 		
 		if selected_menu_item_index == 5 then
-			music_on = not music_on
-			if music_on then
-				menu_items[selected_menu_item_index] = "music: on"
-			else
-				menu_items[selected_menu_item_index] = "music: off"
-			end
+			toggle_music()
 		end
 		
 		if selected_menu_item_index == 6 then
-			sound_on = not sound_on
-			if sound_on then
-				menu_items[selected_menu_item_index] = "sound: on"
-			else
-				menu_items[selected_menu_item_index] = "sound: off"
-			end
+			toggle_sound()
 		end
 		
 		if selected_menu_item_index == 7 then

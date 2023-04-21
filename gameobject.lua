@@ -1,13 +1,14 @@
 game_objects = {}
 
 function init_game()
-	player = create_game_object(16, 16, "player", 2)
-	game_objects[#game_objects + 1] = player
-	
 	for x=1,128 do
 		for y=1, 32 do
 			local s = mget(x,y)
-			if (s == 5) then
+			if (s == 2) then
+				mset(x, y, 0)
+				player = create_game_object(x*8, y*8, "player", 2)
+				game_objects[#game_objects + 1] = player
+			elseif (s == 5) then
 				mset(x,y, 0)
 				local enemy = create_game_object(x*8, y*8, "enemy", 5)
 				game_objects[#game_objects + 1] = enemy
