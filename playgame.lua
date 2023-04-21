@@ -1,5 +1,5 @@
 --player cannot walk through these sprites on the map
-collision_map_sprites = { 1, 3, 4}
+collision_map_sprites = { 1, 3, 4 }
 
 function update_playgame()
 	for o in all(game_objects) do
@@ -58,6 +58,19 @@ function update_game_object(o)
 end
 
 function update_player(o)
+	
+	if btnp(4) then state = "inventory" end
+	
+	if #inventory_items < max_items then
+		local current_space_sprite = mget(o.x/8, o.y/8)
+		for i in all(item_pickup_sprites) do
+			if i[1] == current_space_sprite then
+				mset(o.x/8, o.y/8, 0)
+				inventory_items[#inventory_items + 1] = current_space_sprite
+			end
+		end
+	end
+	
 	if ((o.target_x == o.x) and (o.target_y == o.y)) then
 		if btn(0) then
 			o.target_x -= 8
