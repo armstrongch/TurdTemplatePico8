@@ -1,3 +1,31 @@
+--if there are no possible moves, or if the start == target, this will return the start space
+function closest_empty_adjacent_space(start_space, target_space)
+	if spaces_equal(start_space, target_space) then
+		return start_space
+	else
+		local possible_moves = {
+			{ x = start_space.x + 1, y = start_space.y },	--right
+			{ x = start_space.x, y = start_space.y + 1 },	--down
+			{ x = start_space.x - 1, y = start_space.y },	--left
+			{ x = start_space.x, y = start_space.y - 1 }	--up
+		}
+		local best_dist = -1
+		local best_space = start_space
+		
+		for test_space in all(possible_moves) do
+			if space_collider(test_space) == 0 then
+				local test_dist = distance_between_spaces(target_space, test_space)
+				if best_dist == -1 or test_dist < best_dist then
+					best_dist = test_dist
+					best_space = test_space
+				end
+			end
+		end
+		
+		return best_space
+	end
+end
+
 function line_of_sight(space_1, space_2)
 	
 	if spaces_equal(space_1, space_2) then

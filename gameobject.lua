@@ -17,6 +17,7 @@ function init_game()
 				local patroller = create_game_object(x*8, y*8, "patroller", 10)
 				patroller.move_speed = 0.5
 				patroller.prev_move_index = 1
+				patroller.last_player_sighting_space = { x = 0, y = 0, resolved = true}
 				game_objects[#game_objects + 1] = patroller
 			end
 		end

@@ -19,7 +19,7 @@ function draw_playgame()
 end
 
 function draw_game_object(o)
-	if (o.obj_type == "enemy") then draw_enemy(o)
+	if o.obj_type == "enemy" or o.obj_type == "patroller" then draw_enemy(o)
 	else
 		spr(o.sprite_index, o.x, o.y)
 	end
