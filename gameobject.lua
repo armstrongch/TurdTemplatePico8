@@ -12,6 +12,12 @@ function init_game()
 				mset(x,y, 0)
 				local enemy = create_game_object(x*8, y*8, "enemy", 5)
 				game_objects[#game_objects + 1] = enemy
+			elseif (s == 10) then
+				mset(x,y, 0)
+				local patroller = create_game_object(x*8, y*8, "patroller", 10)
+				patroller.move_speed = 0.5
+				patroller.prev_move_index = 1
+				game_objects[#game_objects + 1] = patroller
 			end
 		end
 	end
